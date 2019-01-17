@@ -1,12 +1,14 @@
-<h1> Willkomen bei Wetr.Web!</h1>
-<h2>Gib den Namen deiner Gemeinde oder deine Postleitzahl ein, um aktuelle Wetterdaten zu erhalten!</h2>
+<div id="container">
+    <h1> Willkomen bei Wetr.Web!</h1>
+    <h2>Gib den Namen deiner Gemeinde oder deine Postleitzahl ein, um aktuelle Wetterdaten zu erhalten!</h2>
 
-<p-autoComplete [(ngModel)]="location" [suggestions]="results" [forceSelection]="true" (completeMethod)="search($event)" field="postCode" placeholder="Gemeinde oder PLZ">
-        <ng-template let-location pTemplate="item">
-                <div class="ui-helper-clearfix">
-                    <div>{{location.communityName}}({{location.postCode}})</div>
-                </div>
-            </ng-template>
-</p-autoComplete>
+    <p-autoComplete [(ngModel)]="location" [suggestions]="results" (completeMethod)="search($event)" field="postCode" placeholder="Gemeinde oder PLZ">
+            <ng-template let-location pTemplate="item">
+                    <div class="ui-helper-clearfix">
+                        <div>{{location.communityName}}({{location.postCode}})</div>
+                    </div>
+                </ng-template>
+    </p-autoComplete>
 
-<button pButton type="button" label="Wetterdaten anzeigen!"></button>
+    <button pButton type="button" label="Wetterdaten anzeigen!" (click)="navigateToLocation();"></button>
+</div>

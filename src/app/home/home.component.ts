@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ButtonModule} from 'primeng/button';
+import { Router } from '@angular/router';
+
 import { LocationClient, Location } from '../../restclient/restclient'
 
 @Component({
@@ -11,7 +13,7 @@ import { LocationClient, Location } from '../../restclient/restclient'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private locationClient : LocationClient) { }
+  constructor(private locationClient : LocationClient, private router : Router) { }
 
   ngOnInit() {
     this.locationClient.getAll().subscribe(val =>{
@@ -26,7 +28,6 @@ export class HomeComponent implements OnInit {
   results: Location[];
 
 
-
   search(event) {
     var temp: Location[] = [];
     this.source.forEach(element => {
@@ -35,5 +36,13 @@ export class HomeComponent implements OnInit {
       }
     this.results = temp;
     });
+  }
+
+  navigateToLocation = function() {
+    if(this.location != null && this.location.postCode != null){
+      console.log(this.location);
+      var route = "/location/" + this.location.postCode;
+      this.router.navigateByUrl(route);
+    }
   }
 }

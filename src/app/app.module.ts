@@ -13,12 +13,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { LocationClient } from '../restclient/restclient';
 import { ButtonModule } from 'primeng/button';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
+import { LocationComponent } from './location/location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NavbarComponent,
+    SuggestionsComponent,
+    LocationComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -27,7 +31,7 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     BrowserAnimationsModule,
     AutoCompleteModule,
-    ButtonModule
+    ButtonModule,
   ],
   providers: [
 
