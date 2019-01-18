@@ -5,14 +5,13 @@
     <ng-template #noLocation>
         <h1>Keine gültige Postleitzahl.</h1>
         <a routerLink="/home" routerLinkActive="active">Zurück zur Startseite</a>
-        
     </ng-template>
 
-  <div *ngFor="let station of stations" >
-      <app-station [station]="station"></app-station>
-  </div>
+    <div *ngFor="let station of stations" >
+        <app-station [station]="station"></app-station>
+    </div>
 
-  <div *ngIf="(stations?.length == 0)">
-    <app-suggestions [location]="location"></app-suggestions>
-  </div>
+    <div *ngIf="(stations?.length == 0)">
+        <app-suggestions [location]="location"></app-suggestions>
+    </div>
 </div>
