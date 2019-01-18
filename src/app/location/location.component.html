@@ -1,6 +1,6 @@
 <div id="content">
-  <h1>
-      {{location?.postCode}} {{location?.communityName}}, {{location?.districtName}}, {{location?.provinceName}}
+  <h1 *ngIf="location">
+      {{location.postCode}} {{location.communityName}}, {{location.districtName}}, {{location.provinceName}}
   </h1>
 
   <p *ngFor="let station of stations" >
