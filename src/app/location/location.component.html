@@ -1,7 +1,9 @@
-<p>
-    {{location?.postCode}} {{location?.communityName}}, {{location?.districtName}}, {{location?.provinceName}}
-</p>
+<div id="content">
+  <h1>
+      {{location?.postCode}} {{location?.communityName}}, {{location?.districtName}}, {{location?.provinceName}}
+  </h1>
 
-<p *ngFor="let station of stations" >
-    {{station.name}}
-</p>
+  <p *ngFor="let station of stations" >
+      {{station.name}}
+  </p>
+</div>

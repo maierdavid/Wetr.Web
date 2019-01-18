@@ -40,7 +40,6 @@ export class HomeComponent implements OnInit {
 
   navigateToLocation = function() {
     if(this.location != null && this.location.postCode != null){
-      console.log(this.location);
       var route = "/location/" + this.location.postCode;
       this.router.navigateByUrl(route);
     }
