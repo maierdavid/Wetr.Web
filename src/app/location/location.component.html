@@ -1,3 +1,7 @@
 <p>
-  Location: {{postCode}}
+    {{location?.postCode}} {{location?.communityName}}, {{location?.districtName}}, {{location?.provinceName}}
+</p>
+
+<p *ngFor="let station of stations" >
+    {{station.name}}
 </p>
