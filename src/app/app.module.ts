@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { LocationComponent } from './location/location.component';
 import { StationComponent } from './station/station.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { StationComponent } from './station/station.component';
     SuggestionsComponent,
     LocationComponent,
     StationComponent,
+    LoginComponent,
   ],
   imports: [
     AppRoutingModule,
