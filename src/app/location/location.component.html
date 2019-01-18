@@ -6,4 +6,8 @@
   <div *ngFor="let station of stations" >
       <app-station [station]="station"></app-station>
   </div>
+
+  <div *ngIf="(stations?.length == 0)">
+    <app-suggestions [location]="location"></app-suggestions>
+  </div>
 </div>
