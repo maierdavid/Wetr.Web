@@ -13,8 +13,10 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() {
     this.postCode = +this.route.snapshot.paramMap.get('postCode');
-    this.locationClient.getByCode(this.postCode).subscribe(val => {this.location = val})
-    this.stationClient.getByLocation(this.postCode).subscribe(val => {this.stations = val});
+    if(!isNaN(this.postCode))
+    this.locationClient.getByCode(this.postCode).subscribe(val => {this.location = val});
+    if(this.location)
+      this.stationClient.getByLocation(this.location.postCode).subscribe(val => {this.stations = val});
   }
 
   postCode: number;

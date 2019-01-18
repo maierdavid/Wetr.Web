@@ -1,7 +1,12 @@
 <div id="content">
-  <h1 *ngIf="location">
-      {{location.postCode}} {{location.communityName}}, {{location.districtName}}, {{location.provinceName}}
-  </h1>
+    <h1 *ngIf="location; else noLocation">
+        {{location.postCode}} {{location.communityName}}, {{location.districtName}}, {{location.provinceName}}
+    </h1>
+    <ng-template #noLocation>
+        <h1>Keine gültige Postleitzahl.</h1>
+        <a routerLink="/home" routerLinkActive="active">Zurück zur Startseite</a>
+        
+    </ng-template>
 
   <div *ngFor="let station of stations" >
       <app-station [station]="station"></app-station>
