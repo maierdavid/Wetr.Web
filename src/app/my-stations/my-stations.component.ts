@@ -83,7 +83,12 @@ export class MyStationsComponent implements OnInit {
   }
 
   deleteStation = function () {
-    this.stationClient.delete(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gelöscht'}););
+    this.stationClient.delete(this.selectedStation.name).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gelöscht'}););
+    const index = this.stations.indexOf(this.selectedStation, 0);
+    if (index > -1) {
+      this.stations.splice(index, 1);
+    }
+    this.cancelDelete();
   }
 
   cancelDelete = function () {
