@@ -26,6 +26,8 @@
   </p-table>
 </div>
 
+<p-toast></p-toast>
+
 <p-dialog header="{{selectedStation?.name}}" [(visible)]="display" modal="true" width="600">
   <form>
       <div class="ui-g">
@@ -53,12 +55,11 @@
           <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="longitude" name="longitude" class="fullsize"/></div>
       </div>
       <div class="ui-g">
-        <div class="ui-g-12"><p-messages [(value)]="msgs"></p-messages></div>
+        <div class="ui-g-12"><p-messages [(value)]="msgs" [enableService]="false"></p-messages></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="updateStation();"></button></div>
           <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelEditing();"></button></div>
       </div>
   </form>
-  
 </p-dialog>

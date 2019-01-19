@@ -4,6 +4,7 @@ import { TableModule } from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {MessageService} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
+import {ToastModule} from 'primeng/toast';
 
 import { StationClient, Station, LocationClient, Location } from '../../services/restclient/restclient';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
@@ -16,7 +17,7 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 })
 export class MyStationsComponent implements OnInit {
 
-  constructor(private stationClient : StationClient, private authenticationService : AuthenticationService, private locationClient : LocationClient) { }
+  constructor(private stationClient : StationClient, private authenticationService : AuthenticationService, private locationClient : LocationClient, private messageService: MessageService) { }
 
   ngOnInit() {
     this.stationClient.getByCreator(this.authenticationService.getLoggedIn().username).subscribe(val => { this.stations = val});
@@ -61,7 +62,7 @@ export class MyStationsComponent implements OnInit {
         this.selectedStation.street = this.street;
         this.selectedStation.latitude = this.latitude;
     
-        this.stationClient.update(this.selectedStation).subscribe(res => this.updateMessage = 'Station wurde geändert');
+        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Service Message', detail:'Station erfolgreich geändert'}););
         this.display = false;
     } else {
       this.msgs.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
