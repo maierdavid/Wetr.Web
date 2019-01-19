@@ -62,7 +62,7 @@ export class MyStationsComponent implements OnInit {
         this.selectedStation.street = this.street;
         this.selectedStation.latitude = this.latitude;
     
-        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Service Message', detail:'Station erfolgreich geändert'}););
+        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
         this.display = false;
     } else {
       this.msgs.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
