@@ -1,3 +1,19 @@
 .fullsize {
     width: 100%;
 }
+
+.halfsize {
+    width: 50% !important;
+}
+
+#relativeContainer {
+    position: relative;
+    display:inline-block;
+    width: 100%;
+}
+
+.right {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+}

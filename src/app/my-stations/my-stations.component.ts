@@ -26,7 +26,9 @@ export class MyStationsComponent implements OnInit {
   stations: Station[];
   selectedStation: Station;
 
-  display: Boolean = false;
+  displayEdit: Boolean = false;
+  displayDelete: Boolean = false;
+  displayCreate: Boolean = false;
 
   msgs: Message[] = [];
 
@@ -40,7 +42,7 @@ export class MyStationsComponent implements OnInit {
 
 
   editStation = function (station : Station) {
-    this.display = true;
+    this.displayEdit = true;
     this.selectedStation = station;
     this.name = station.name;
     this.type = station.type;
@@ -51,28 +53,63 @@ export class MyStationsComponent implements OnInit {
   }
 
   updateStation = function () {
-
-    if( this.name.trim() != '' && 
-        this.type.trim() != '' &&
-        this.street.trim()!= '')
+    if( this.validateStation();)
     {
-        this.selectedStation.name = this.name;
+        this.fillSelectedStation();
+    
+        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
+        this.displayEdit = false;
+    } else {
+      this.msgs.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
+    }
+  }
+
+  cancelEditing = function () {
+    this.selectedStation = null;
+    this.displayEdit = false;
+  }
+
+  confirmDeleteStation = function (station : Station) {
+    this.displayDelete = true;
+    this.selectedStation = station;
+  }
+
+  deleteStation = function () {
+    this.stationClient.delete(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
+  }
+
+  cancelDelete = function () {
+    this.selectedStation = null;
+    this.displayDelete = false;
+  }
+
+  createStation = function () {
+    this.selectedStation = new Station;
+    this.displayCreate = true;
+
+  }
+
+  sendStation = function () {
+
+  }
+
+  cancelCreate = function () {
+    this.selectedStation = null;
+    this.displayCreate = false;
+  }
+
+  validateStation() : Boolean{
+    return (this.name.trim() != '' && 
+    this.type.trim() != '' &&
+    this.street.trim()!= '')
+  }
+
+  fillSelectedStation () {
+    this.selectedStation.name = this.name;
         this.selectedStation.type = this.type;
         this.selectedStation.location = this.location;
         this.selectedStation.street = this.street;
         this.selectedStation.latitude = this.latitude;
-    
-        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
-        this.display = false;
-    } else {
-      this.msgs.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
-    }
-
-
-  }
-
-  cancelEditing = function () {
-    this.display = false;
   }
 
 }

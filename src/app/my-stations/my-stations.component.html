@@ -1,5 +1,9 @@
 <div id="content">
-  <h1>Meine Stationen</h1>
+  <div id="relativeContainer">
+    <h1 class="left">Meine Stationen</h1>
+    <button icon="pi pi-plus" label="Neue Station erstellen" pButton type="button" class="ui-button-success right" (click)="createStation()"></button>
+  </div>
+
   <p-table [value]="stations">
       <ng-template pTemplate="header">
           <tr>
@@ -20,7 +24,7 @@
               <td>{{station.street}}</td>
               <td>{{station.latitude}}</td>
               <td>{{station.longitude}}</td>
-              <td><button icon="pi pi-pencil" pButton type="button" (click)="editStation(station)"></button></td>
+              <td><button icon="pi pi-pencil" pButton type="button" (click)="editStation(station)" class="halfsize"></button><button icon="pi pi-trash" pButton type="button" class="ui-button-danger halfsize" (click)="confirmDeleteStation(station)"></button></td>
           </tr>
       </ng-template>
   </p-table>
@@ -28,7 +32,7 @@
 
 <p-toast></p-toast>
 
-<p-dialog header="{{selectedStation?.name}}" [(visible)]="display" modal="true" width="600">
+<p-dialog header="{{selectedStation?.name}}" [(visible)]="displayEdit" modal="true" width="600">
   <form>
       <div class="ui-g">
           <div class="ui-g-2">Name</div>
@@ -63,3 +67,47 @@
       </div>
   </form>
 </p-dialog>
+
+<p-dialog header="Station löschen" [(visible)]="displayDelete" modal="true">
+  Möchten sie {{selectedStation?.name}} wirklich löschen?
+  <p-footer>
+      <button pButton type="button" label="Löschen" class="fullsize" (click)="deleteStation();"></button>
+      <button pButton type="button" label="Abbrechen" class="fullsize" (click)="cancelDelete();"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dialog header="Neue Station anlegen" [(visible)]="displayCreate" modal="true" width="600">
+    <form>
+        <div class="ui-g">
+            <div class="ui-g-2">Name</div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="name" name="name" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Typ</div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="type" name="type" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Postleitzahl</div>
+            <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="location" name="location" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Straße</div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="street" name="street" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Breitengrade</div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="latitude" name="latitude" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Längengrade</div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="longitude" name="longitude" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12"><p-messages [(value)]="msgs" [enableService]="false"></p-messages></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="sendStation();"></button></div>
+            <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelCreate();"></button></div>
+        </div>
+    </form>
+  </p-dialog>
