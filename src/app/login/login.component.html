@@ -1,7 +1,9 @@
 <div id="content">
-  <p>
-    login works!
-  </p>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit();">
+      <input type="text" pInputText [(ngModel)]="username" name="username" placeholder="Benutzername" required/>
+      <input type="password" pPassword [(ngModel)]="password" [feedback]="false" name="password" placeholder="Passwort" required/>
+      <button pButton type="submit" label="Login" [disabled]="loginForm.invalid"></button>
+  </form>
 </div>
 
 
