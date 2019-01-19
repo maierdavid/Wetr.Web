@@ -123,7 +123,6 @@ export class MyStationsComponent implements OnInit {
   }
 
   validateStation() : Boolean{
-    console.log(this.selectedStation);
     return (this.selectedStation.name.trim() != '' && 
     this.selectedStation.type.trim() != '' &&
     this.selectedStation.street.trim()!= '');
