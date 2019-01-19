@@ -31,7 +31,7 @@ export class AuthenticationService {
     return sessionStorage.getItem("User") != null;
   }
 
-  Logout(){
+  logout(){
     sessionStorage.removeItem("User");
   }
 }
