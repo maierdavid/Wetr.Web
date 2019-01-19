@@ -5,6 +5,7 @@ import { MessagesModule }from 'primeng/messages'
 import { MessageModule }from 'primeng/message'
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { Message } from 'primeng/components/common/message';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +14,13 @@ import { Message } from 'primeng/components/common/message';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authenticationService : AuthenticationService) { }
+  constructor(private authenticationService : AuthenticationService, private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => this.return = params['returnUrl']);
   }
+
+  return: string = "";
 
   username: string;
   password: string;
@@ -28,7 +32,7 @@ export class LoginComponent implements OnInit {
     if(this.username != "" && this.password != ""){
       this.authenticationService.login(this.username, this.password).then(val => {
         if(val){
-  
+          this.router.navigateByUrl(this.return);
         } else {
           this.msgs.push({severity:'error', summary:'Login nicht erfolgreich', detail:'Bitte überprüfen Sie Benutzername und Passwort'});
         }
