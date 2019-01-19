@@ -5,8 +5,9 @@ import {DialogModule} from 'primeng/dialog';
 import {MessageService} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
+import { Message } from 'primeng/components/common/message';
 
-import { StationClient, Station, LocationClient, Location } from '../../services/restclient/restclient';
+import { StationClient, Station, LocationClient, Location, User } from '../../services/restclient/restclient';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
@@ -55,7 +56,7 @@ export class MyStationsComponent implements OnInit {
   updateStation = function () {
     var valid = this.validateStation();
     if(valid) {
-        this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
+        this.stationClient.update(this.selectedStation).subscribe(res => {this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'});});
         this.displayEdit = false;
     } else {
       this.updateMessages.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
@@ -83,7 +84,7 @@ export class MyStationsComponent implements OnInit {
   }
 
   deleteStation = function () {
-    this.stationClient.delete(this.selectedStation.name).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gelöscht'}););
+    this.stationClient.delete(this.selectedStation.name).subscribe(res => {this.messageService.add({severity:'success', summary:'Station erfolgreich gelöscht'});});
     const index = this.stations.indexOf(this.selectedStation, 0);
     if (index > -1) {
       this.stations.splice(index, 1);
