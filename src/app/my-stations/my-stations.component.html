@@ -1,0 +1,64 @@
+<div id="content">
+  <h1>Meine Stationen</h1>
+  <p-table [value]="stations">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Name</th>
+              <th>Typ</th>
+              <th>Postleitzahl</th>
+              <th>Straße</th>
+              <th>Breitengrade</th>
+              <th>Längengrade</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-station>
+          <tr>
+              <td>{{station.name}}</td>
+              <td>{{station.type}}</td>
+              <td>{{station.location}}</td>
+              <td>{{station.street}}</td>
+              <td>{{station.latitude}}</td>
+              <td>{{station.longitude}}</td>
+              <td><button icon="pi pi-pencil" pButton type="button" (click)="editStation(station)"></button></td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="{{selectedStation?.name}}" [(visible)]="display" modal="true" width="600">
+  <form>
+      <div class="ui-g">
+          <div class="ui-g-2">Name</div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="name" name="name" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-2">Typ</div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="type" name="type" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-2">Postleitzahl</div>
+          <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="location" name="location" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-2">Straße</div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="street" name="street" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-2">Breitengrade</div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="latitude" name="latitude" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-2">Längengrade</div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="longitude" name="longitude" class="fullsize"/></div>
+      </div>
+      <div class="ui-g">
+        <div class="ui-g-12"><p-messages [(value)]="msgs"></p-messages></div>
+      </div>
+      <div class="ui-g">
+          <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="updateStation();"></button></div>
+          <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelEditing();"></button></div>
+      </div>
+  </form>
+  
+</p-dialog>

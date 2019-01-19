@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
   password: string;
   
   msgs: Message[] = [];
-  msg: Message;
 
   onSubmit = function () {
     if(this.username != "" && this.password != ""){
