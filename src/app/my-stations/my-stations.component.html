@@ -32,34 +32,34 @@
 
 <p-toast></p-toast>
 
-<p-dialog header="{{selectedStation?.name}}" [(visible)]="displayEdit" modal="true" width="600">
+<p-dialog header="{{selectedStation.name}} bearbeiten" [(visible)]="displayEdit" modal="true" width="600">
   <form>
       <div class="ui-g">
           <div class="ui-g-2">Name</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="name" name="name" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Typ</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="type" name="type" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Postleitzahl</div>
-          <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="location" name="location" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Straße</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="street" name="street" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Breitengrade</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="latitude" name="latitude" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Längengrade</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="longitude" name="longitude" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" class="fullsize"/></div>
       </div>
       <div class="ui-g">
-        <div class="ui-g-12"><p-messages [(value)]="msgs" [enableService]="false"></p-messages></div>
+        <div class="ui-g-12"><p-messages [(value)]="updateMessages" [enableService]="false"></p-messages></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="updateStation();"></button></div>
@@ -80,30 +80,30 @@
     <form>
         <div class="ui-g">
             <div class="ui-g-2">Name</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="name" name="name" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Typ</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="type" name="type" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Postleitzahl</div>
-            <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="location" name="location" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Straße</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="street" name="street" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Breitengrade</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="latitude" name="latitude" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Längengrade</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="longitude" name="longitude" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" class="fullsize"/></div>
         </div>
         <div class="ui-g">
-          <div class="ui-g-12"><p-messages [(value)]="msgs" [enableService]="false"></p-messages></div>
+          <div class="ui-g-12"><p-messages [(value)]="createMessages" [enableService]="false"></p-messages></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="sendStation();"></button></div>

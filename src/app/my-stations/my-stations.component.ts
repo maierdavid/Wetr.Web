@@ -20,17 +20,22 @@ export class MyStationsComponent implements OnInit {
   constructor(private stationClient : StationClient, private authenticationService : AuthenticationService, private locationClient : LocationClient, private messageService: MessageService) { }
 
   ngOnInit() {
-    this.stationClient.getByCreator(this.authenticationService.getLoggedIn().username).subscribe(val => { this.stations = val});
+    this.user = this.authenticationService.getLoggedIn();
+    this.stationClient.getByCreator(this.user.username).subscribe(val => { this.stations = val});
   }
 
+  user: User;
+
   stations: Station[];
-  selectedStation: Station;
+  selectedStation: Station = new Station();
+  prevStation: Station;
 
   displayEdit: Boolean = false;
   displayDelete: Boolean = false;
   displayCreate: Boolean = false;
 
-  msgs: Message[] = [];
+  updateMessages: Message[] = [];
+  createMessages: Message[] = [];
 
 
   name: String;
@@ -44,29 +49,32 @@ export class MyStationsComponent implements OnInit {
   editStation = function (station : Station) {
     this.displayEdit = true;
     this.selectedStation = station;
-    this.name = station.name;
-    this.type = station.type;
-    this.location = station.location;
-    this.street = station.street;
-    this.latitude = station.latitude;
-    this.longitude = station.longitude;
+    this.prevStation = { ...station };
   }
 
   updateStation = function () {
-    if( this.validateStation();)
-    {
-        this.fillSelectedStation();
-    
+    var valid = this.validateStation();
+    if(valid) {
         this.stationClient.update(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
         this.displayEdit = false;
     } else {
-      this.msgs.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
+      this.updateMessages.push({severity:'error', summary:'Speichern nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
     }
   }
 
   cancelEditing = function () {
-    this.selectedStation = null;
+    this.restoreSelectedStation();
+    this.selectedStation = new Station;
     this.displayEdit = false;
+  }
+
+  restoreSelectedStation() {
+    this.selectedStation.name = this.prevStation.name;
+    this.selectedStation.type = this.prevStation.type;
+    this.selectedStation.location = this.prevStation.location;
+    this.selectedStation.street = this.prevStation.street;
+    this.selectedStation.latitude = this.prevStation.latitude;
+    this.selectedStation.longitude = this.prevStation.longitude;
   }
 
   confirmDeleteStation = function (station : Station) {
@@ -75,41 +83,44 @@ export class MyStationsComponent implements OnInit {
   }
 
   deleteStation = function () {
-    this.stationClient.delete(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'}););
+    this.stationClient.delete(this.selectedStation).subscribe(res =>  this.messageService.add({severity:'success', summary:'Station erfolgreich gelöscht'}););
   }
 
   cancelDelete = function () {
-    this.selectedStation = null;
+    this.selectedStation = new Station();
     this.displayDelete = false;
   }
 
   createStation = function () {
     this.selectedStation = new Station;
+    this.selectedStation.id=0;
+    this.selectedStation.creator = 
     this.displayCreate = true;
 
   }
 
   sendStation = function () {
-
+    var valid = this.validateStation();
+    if(valid){
+      this.stationClient.insert(this.selectedStation).subscribe(res =>  {
+        this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'});
+        this.stations.push(this.selectedStation);
+      });
+      this.displayCreate = false;
+    } else {
+      this.updateMessages.push({severity:'error', summary:'Anlegen nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
+    }
   }
 
   cancelCreate = function () {
-    this.selectedStation = null;
+    this.selectedStation = new Station();
     this.displayCreate = false;
   }
 
   validateStation() : Boolean{
-    return (this.name.trim() != '' && 
-    this.type.trim() != '' &&
-    this.street.trim()!= '')
+    console.log(this.selectedStation);
+    return (this.selectedStation.name.trim() != '' && 
+    this.selectedStation.type.trim() != '' &&
+    this.selectedStation.street.trim()!= '');
   }
-
-  fillSelectedStation () {
-    this.selectedStation.name = this.name;
-        this.selectedStation.type = this.type;
-        this.selectedStation.location = this.location;
-        this.selectedStation.street = this.street;
-        this.selectedStation.latitude = this.latitude;
-  }
-
 }
