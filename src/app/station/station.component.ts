@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Station } from '../../restclient/restclient';
+import { Station } from '../../services/restclient/restclient';
 
 @Component({
   selector: 'app-station',

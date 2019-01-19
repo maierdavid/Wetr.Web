@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StationClient, LocationClient, Location, Station } from '../../restclient/restclient';
+import { StationClient, LocationClient, Location, Station } from '../../services/restclient/restclient';
 
 @Component({
   selector: 'app-suggestions',

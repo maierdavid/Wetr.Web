@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StationClient, Station, LocationClient, Location } from '../../restclient/restclient';
+import { StationClient, Station, LocationClient, Location } from '../../services/restclient/restclient';
 
 @Component({
   selector: 'app-location',

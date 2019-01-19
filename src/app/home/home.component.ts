@@ -4,7 +4,7 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import {ButtonModule} from 'primeng/button';
 import { Router } from '@angular/router';
 
-import { LocationClient, Location } from '../../restclient/restclient'
+import { LocationClient, Location } from '../../services/restclient/restclient'
 
 @Component({
   selector: 'app-home',
