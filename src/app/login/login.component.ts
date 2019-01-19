@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
+import { MessagesModule }from 'primeng/messages'
+import { MessageModule }from 'primeng/message'
 import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +20,23 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-
-  success: boolean;
+  
+  msgs: Message[] = [];
+  msg: Message;
 
   onSubmit = function () {
-    this.authenticationService.login(this.username, this.password).then(val => {
-      this.success = val;
-    });
+    if(this.username != "" && this.password != ""){
+      this.authenticationService.login(this.username, this.password).then(val => {
+        if(val){
+  
+        } else {
+          this.msgs.push({severity:'error', summary:'Login nicht erfolgreich', detail:'Bitte überprüfen Sie Benutzername und Passwort'});
+        }
+      });
+    } else {
+      this.msgs.push({severity:'error', summary:'Login nicht erfolgreich', detail:'Bitte geben Sie Benutzername und Passwort ein'});
+    }
+
   }
 
 }

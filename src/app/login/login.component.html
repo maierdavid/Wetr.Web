@@ -4,6 +4,7 @@
       <input type="password" pPassword [(ngModel)]="password" [feedback]="false" name="password" placeholder="Passwort" required/>
       <button pButton type="submit" label="Login" [disabled]="loginForm.invalid"></button>
   </form>
+  <p-messages [(value)]="msgs"></p-messages>
 </div>
 
 

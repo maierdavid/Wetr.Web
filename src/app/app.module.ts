@@ -11,6 +11,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
+import {MessageModule} from 'primeng/message';
+import {MessagesModule} from 'primeng/messages';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -39,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     ButtonModule,
     InputTextModule,
     PasswordModule,
-
+    MessageModule,
+    MessagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
