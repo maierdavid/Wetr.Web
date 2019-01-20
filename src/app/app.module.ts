@@ -16,6 +16,10 @@ import {MessagesModule} from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import {DialogModule} from 'primeng/dialog';
 import {ToastModule} from 'primeng/toast';
+import {PanelModule} from 'primeng/panel';
+import {DropdownModule} from 'primeng/dropdown';
+import {CalendarModule} from 'primeng/calendar';
+import {ChartModule} from 'primeng/chart';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -51,6 +55,10 @@ import { MyStationsComponent } from './my-stations/my-stations.component';
     TableModule,
     DialogModule,
     ToastModule,
+    PanelModule,
+    DropdownModule,
+    CalendarModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

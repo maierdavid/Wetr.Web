@@ -1,5 +1,23 @@
-<div class="station">
-  <p>
-    {{station.name}} {{station.type}}
-  </p>
-</div>
+<p-panel header="{{station.name}}">
+  <div>
+      <form>
+          <div class="ui-g">
+              <div class="ui-g-2">Messungstyp</div>
+              <div class="ui-g-10"><p-dropdown [options]="measurementTypes" [(ngModel)]="selectedMeasurementType" name="selectedMeasurementType" optionLabel="type" [style]="{'width':'100%'}" (onChange)="setData()"></p-dropdown></div>
+          </div>
+          <div class="ui-g">
+              <div class="ui-g-2">Zeitraum</div>
+              <div class="ui-g-10"><p-calendar [(ngModel)]="rangeDates" selectionMode="range" name="range" [hideOnDateTimeSelect]="true" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%', 'min-width': '100%'}" (onSelect)="setData()"></p-calendar></div>
+          </div>
+          <div class="ui-g">
+                <div class="ui-g-2">Aggregation</div>
+                <div class="ui-g-10"><p-dropdown [options]="aggregations" [(ngModel)]="selectedAggregation" name="selectedAggregation" [style]="{'width':'100%'}" (onChange)="setData()"></p-dropdown></div>
+            </div>
+      </form>
+  </div>
+  <div>
+        <p-chart type="line" [data]="data" (onDataSelect)="selectData($event)"></p-chart>
+  </div>
+</p-panel>
+
+<button (click)="log();">Log</button>
