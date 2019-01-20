@@ -1,7 +1,7 @@
 <div id="content">
   <div id="relativeContainer">
     <h1 class="left">Meine Stationen</h1>
-    <button icon="pi pi-plus" label="Neue Station erstellen" pButton type="button" class="ui-button-success right" (click)="createStation()"></button>
+    <button icon="pi pi-plus" label="Neue Station erstellen" pButton type="button" class="ui-button-success right" (click)="openCreate()"></button>
   </div>
 
   <p-table [value]="stations">
@@ -24,7 +24,11 @@
               <td>{{station.street}}</td>
               <td>{{station.latitude}}</td>
               <td>{{station.longitude}}</td>
-              <td><button icon="pi pi-pencil" pButton type="button" (click)="editStation(station)" class="halfsize"></button><button icon="pi pi-trash" pButton type="button" class="ui-button-danger halfsize" (click)="confirmDeleteStation(station)"></button></td>
+              <td>
+                  <button icon="pi pi-plus" pButton type="button" class="ui-button-success halfsize" (click)="addMeasurement(station)"></button>
+                  <button icon="pi pi-pencil" pButton type="button" (click)="openEdit(station)" class="halfsize"></button>
+                  <button icon="pi pi-trash" pButton type="button" class="ui-button-danger halfsize" (click)="openDelete(station)"></button>
+              </td>
           </tr>
       </ng-template>
   </p-table>
@@ -63,7 +67,7 @@
       </div>
       <div class="ui-g">
           <div class="ui-g-6"><button pButton type="button" label="Speichern" class="fullsize" (click)="updateStation();"></button></div>
-          <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelEditing();"></button></div>
+          <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelEdit();"></button></div>
       </div>
   </form>
 </p-dialog>

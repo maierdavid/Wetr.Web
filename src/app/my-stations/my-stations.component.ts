@@ -47,7 +47,7 @@ export class MyStationsComponent implements OnInit {
   latitude: Number;
 
 
-  editStation = function (station : Station) {
+  openEdit = function (station : Station) {
     this.displayEdit = true;
     this.selectedStation = station;
     this.prevStation = { ...station };
@@ -63,7 +63,7 @@ export class MyStationsComponent implements OnInit {
     }
   }
 
-  cancelEditing = function () {
+  cancelEdit = function () {
     this.restoreSelectedStation();
     this.selectedStation = new Station;
     this.displayEdit = false;
@@ -78,7 +78,7 @@ export class MyStationsComponent implements OnInit {
     this.selectedStation.longitude = this.prevStation.longitude;
   }
 
-  confirmDeleteStation = function (station : Station) {
+  openDelete = function (station : Station) {
     this.displayDelete = true;
     this.selectedStation = station;
   }
@@ -97,7 +97,7 @@ export class MyStationsComponent implements OnInit {
     this.displayDelete = false;
   }
 
-  createStation = function () {
+  openCreate = function () {
     this.selectedStation = new Station;
     this.selectedStation.id=0;
     this.selectedStation.creator = 
