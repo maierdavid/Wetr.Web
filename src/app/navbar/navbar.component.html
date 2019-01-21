@@ -1,6 +1,7 @@
 <div>
   <ul>
     <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li *ngIf="this.authenticationService.isLoggedIn();"><a routerLinkActive="active" routerLink="/mypage">Meine Seite</a></li>
     <li *ngIf="this.authenticationService.isLoggedIn();"><a routerLink="/mystations" routerLinkActive="active">Meine Stationen</a></li>
     <li *ngIf="!this.authenticationService.isLoggedIn();" class="right"><a routerLinkActive="active" routerLink="/login"><button pButton type="button" label="Login" class="ui-button-rounded"></button></a></li>
     <li *ngIf="this.authenticationService.isLoggedIn();" class="right"><button pButton type="button" label="Logout" class="ui-button-rounded ui-button-danger" (click)="logout();"></button></li>

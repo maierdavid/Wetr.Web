@@ -29,6 +29,8 @@ import { LocationComponent } from './location/location.component';
 import { StationComponent } from './station/station.component';
 import { LoginComponent } from './login/login.component';
 import { MyStationsComponent } from './my-stations/my-stations.component';
+import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { StationReportComponent } from './station-report/station-report.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { MyStationsComponent } from './my-stations/my-stations.component';
     StationComponent,
     LoginComponent,
     MyStationsComponent,
+    PersonalPageComponent,
+    StationReportComponent,
   ],
   imports: [
     AppRoutingModule,

@@ -1,0 +1,40 @@
+<div id="content">
+    <div id="relativeContainer">
+        <h1 class="left">Meine Seite</h1>
+        <button icon="pi pi-plus" label="Neue Karte hinzufügen" pButton type="button" class="ui-button-success right" (click)="openCard()"></button>
+      </div>
+  <div class="p-grid">
+      <div *ngFor="let preference of preferences" class="p-col-12 p-md-6 p-lg-3">
+          <app-station-report [station]="preference.station.Name"></app-station-report>
+      </div>
+  </div>
+</div>
+
+<p-dialog header="Neuen Karte hinzufügen" [(visible)]="displayCard" modal="true" width="600" [contentStyle]="{'overflow':'visible'}" (onHide)="cancelCard();">
+    <form>
+      <div class="ui-g">
+          <div class="ui-g-2">Station</div>
+          <div class="ui-g-10">
+              <p-autoComplete [(ngModel)]="selectedStation" [suggestions]="filteredStations" (completeMethod)="search($event)" field="name" placeholder="Station" name="station" [style]="{'width':'100%'}" [inputStyle]="{'width':'100%'}">
+                  <ng-template let-station pTemplate="item">
+                      <div class="ui-helper-clearfix">
+                        <div>{{station.name}}({{station.location}})</div>
+                      </div>
+                  </ng-template>
+          </p-autoComplete>
+          </div>
+      </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Messungstyp</div>
+            <div class="ui-g-10"><p-dropdown [options]="measurementTypes" [(ngModel)]="selectedMeasurementType" name="selectedMeasurementType" optionLabel="type" [style]="{'width':'100%'}"></p-dropdown></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Aggregation</div>
+            <div class="ui-g-10"><p-dropdown [options]="aggregations" [(ngModel)]="selectedAggregation" name="selectedAggregation" [style]="{'width':'100%'}"></p-dropdown></div>
+        </div>
+        <div class="ui-g">
+                <div class="ui-g-6"><button pButton type="button" label="Karte hinzufügen abschicken" class="fullsize" (click)="sendCard();"></button></div>
+                <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelCard();"></button></div>
+            </div>
+    </form>
+</p-dialog>
