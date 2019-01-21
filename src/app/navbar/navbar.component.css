@@ -35,3 +35,11 @@ li a:hover:not(.active) {
 .right {
   float: right !important;
 }
+
+.button-link{
+  padding: 6px !important;
+}
+
+.logout-button {
+  margin: 6px;
+}
