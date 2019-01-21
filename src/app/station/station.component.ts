@@ -62,7 +62,8 @@ export class StationComponent implements OnInit {
   }
 
   setChartData(measurements : Measurement[]){
-    console.log(this.selectedAggregation);
+    console.log("measurements");
+    console.log(measurements);
 
     switch(this.selectedAggregation){
       case "hour" : {
@@ -94,7 +95,8 @@ export class StationComponent implements OnInit {
   }
 
   fillChartData(data : FilterTupel[]){
-    console.log("whyyounoredraw");
+    console.log("data:");
+    console.log(data);
 
     var labels: string[] = [];
     var max: any[] = [];
@@ -131,9 +133,5 @@ export class StationComponent implements OnInit {
           }
       ]
   }
-  }
-
-  log = function () {
-    console.log(this.measurements);
   }
 }

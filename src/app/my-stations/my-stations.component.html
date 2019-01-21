@@ -25,7 +25,7 @@
               <td>{{station.latitude}}</td>
               <td>{{station.longitude}}</td>
               <td>
-                  <button icon="pi pi-plus" pButton type="button" class="ui-button-success halfsize" (click)="addMeasurement(station)"></button>
+                  <button icon="pi pi-plus" pButton type="button" class="ui-button-success halfsize" (click)="openMeasurement(station)"></button>
                   <button icon="pi pi-pencil" pButton type="button" (click)="openEdit(station)" class="halfsize"></button>
                   <button icon="pi pi-trash" pButton type="button" class="ui-button-danger halfsize" (click)="openDelete(station)"></button>
               </td>
@@ -36,11 +36,11 @@
 
 <p-toast></p-toast>
 
-<p-dialog header="{{selectedStation.name}} bearbeiten" [(visible)]="displayEdit" modal="true" width="600">
+<p-dialog header="{{selectedStation.name}} bearbeiten" [(visible)]="displayEdit" modal="true" width="600" (onHide)="cancelEdit();">
   <form>
       <div class="ui-g">
           <div class="ui-g-2">Name</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Typ</div>
@@ -72,7 +72,7 @@
   </form>
 </p-dialog>
 
-<p-dialog header="Station löschen" [(visible)]="displayDelete" modal="true">
+<p-dialog header="Station löschen" [(visible)]="displayDelete" modal="true" (onHide)="cancelDelete();">
   Möchten sie {{selectedStation?.name}} wirklich löschen?
   <p-footer>
       <button pButton type="button" label="Löschen" class="fullsize" (click)="deleteStation();"></button>
@@ -80,7 +80,7 @@
   </p-footer>
 </p-dialog>
 
-<p-dialog header="Neue Station anlegen" [(visible)]="displayCreate" modal="true" width="600">
+<p-dialog header="Neue Station anlegen" [(visible)]="displayCreate" modal="true" width="600" (onHide)="cancelCreate();">
     <form>
         <div class="ui-g">
             <div class="ui-g-2">Name</div>
@@ -115,3 +115,20 @@
         </div>
     </form>
   </p-dialog>
+
+<p-dialog header="Neuen Messwert eintragen" [(visible)]="displayMeasurement" modal="true" width="600" [contentStyle]="{'overflow':'visible'}" (onHide)="cancelMeasurement();">
+    <form>
+        <div class="ui-g">
+            <div class="ui-g-2">Messungstyp</div>
+            <div class="ui-g-10"><p-dropdown [options]="measurementTypes" [(ngModel)]="selectedMeasurementType" name="selectedMeasurementType" optionLabel="type" [style]="{'width':'100%'}"></p-dropdown></div>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-2">Wert</div>
+            <div class="ui-g-10"><input type="number" pInputText pKeyFilter="num" [(ngModel)]="value" name="value" class="fullsize"/></div>
+        </div>
+        <div class="ui-g">
+                <div class="ui-g-6"><button pButton type="button" label="Messwert abschicken" class="fullsize" (click)="sendMeasurement();"></button></div>
+                <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelMeasurement();"></button></div>
+            </div>
+    </form>
+</p-dialog>

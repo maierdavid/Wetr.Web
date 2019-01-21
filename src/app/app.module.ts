@@ -20,6 +20,7 @@ import {PanelModule} from 'primeng/panel';
 import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 import {ChartModule} from 'primeng/chart';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -59,6 +60,7 @@ import { MyStationsComponent } from './my-stations/my-stations.component';
     DropdownModule,
     CalendarModule,
     ChartModule,
+    KeyFilterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

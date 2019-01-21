@@ -6,8 +6,9 @@ import {MessageService} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import { Message } from 'primeng/components/common/message';
+import {KeyFilterModule} from 'primeng/keyfilter';
 
-import { StationClient, Station, LocationClient, Location, User } from '../../services/restclient/restclient';
+import { StationClient, Station, LocationClient, Location, User, MeasurementClient, Measurement, MeasurementType } from '../../services/restclient/restclient';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
@@ -18,11 +19,12 @@ import { AuthenticationService } from '../../services/authentication/authenticat
 })
 export class MyStationsComponent implements OnInit {
 
-  constructor(private stationClient : StationClient, private authenticationService : AuthenticationService, private locationClient : LocationClient, private messageService: MessageService) { }
+  constructor(private stationClient : StationClient, private authenticationService : AuthenticationService, private locationClient : LocationClient, private measurementClient : MeasurementClient, private messageService: MessageService) { }
 
   ngOnInit() {
     this.user = this.authenticationService.getLoggedIn();
     this.stationClient.getByCreator(this.user.username).subscribe(val => { this.stations = val});
+    this.measurementClient.getALLTypes().subscribe(val => this.measurementTypes = val);
   }
 
   user: User;
@@ -31,13 +33,17 @@ export class MyStationsComponent implements OnInit {
   selectedStation: Station = new Station();
   prevStation: Station;
 
+  measurementTypes: MeasurementType[];
+  selectedMeasurementType: MeasurementType;
+  value: Number;
+
   displayEdit: Boolean = false;
   displayDelete: Boolean = false;
   displayCreate: Boolean = false;
+  displayMeasurement: Boolean = false;
 
   updateMessages: Message[] = [];
   createMessages: Message[] = [];
-
 
   name: String;
   type: String;
@@ -46,6 +52,7 @@ export class MyStationsComponent implements OnInit {
   longitude: Number;
   latitude: Number;
 
+  blockSpecial: RegExp = /^[^<>*!]+$/;
 
   openEdit = function (station : Station) {
     this.displayEdit = true;
@@ -127,5 +134,24 @@ export class MyStationsComponent implements OnInit {
     return (this.selectedStation.name.trim() != '' && 
     this.selectedStation.type.trim() != '' &&
     this.selectedStation.street.trim()!= '');
+  }
+
+  openMeasurement = function (station : Station) {
+    this.displayMeasurement = true;
+    this.selectedStation = station;
+  }
+
+  sendMeasurement = function (){
+    var measurement: Measurement = new Measurement;
+    measurement.station = this.selectedStation.id;
+    measurement.timeStamp = new Date();
+    measurement.type = this.selectedMeasurementType.type;
+    measurement.value = this.value;
+
+    this.measurementClient.insert([measurement]).subscribe( res => { this.messageService.add({severity:'success', summary:'Messwert erfolgreich gesendet'});});
+  }
+
+  cancelMeasurement = function () {
+    this.displayMeasurement = false;
   }
 }
