@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private authenticationService : AuthenticationService, private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => this.return = params['returnUrl']);
+    this.route.queryParams.subscribe(params => this.return = "/mypage");
   }
 
   return: string = "";
