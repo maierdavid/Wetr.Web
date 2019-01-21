@@ -30,8 +30,6 @@ export class StationReportComponent implements OnInit {
   fillData(type: any) {
     //unfortunately, this has to be mocked because the calls to the api yield no results
 
-    console.log(type.Type);
-
     var generatedValue: Number;
     switch(type.Type){
       case("Air_Pressure"): {
@@ -63,7 +61,6 @@ export class StationReportComponent implements OnInit {
       }
     }
     this.displayData.push({type: type.Type, value: generatedValue});
-    console.log(this.displayData);
   }
 
   getRandomArbitrary(min, max) {
