@@ -1,10 +1,19 @@
 <div id="content">
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit();">
-      <input type="text" pInputText [(ngModel)]="username" name="username" placeholder="Benutzername" required/>
-      <input type="password" pPassword [(ngModel)]="password" [feedback]="false" name="password" placeholder="Passwort" required/>
-      <button pButton type="submit" label="Login" [disabled]="loginForm.invalid"></button>
-  </form>
-  <p-messages [(value)]="msgs"></p-messages>
+  <div id="login">
+      <h1>Login</h1>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit();">
+      <div>
+          <input type="text" pInputText [(ngModel)]="username" name="username" placeholder="Benutzername" class="fullsize" required/>
+      </div>
+      <div>
+        
+          <input type="password" pPassword [(ngModel)]="password" [feedback]="false" name="password" placeholder="Passwort" class="fullsize" required/>
+      </div>
+
+        <button pButton type="submit" label="Login" [disabled]="loginForm.invalid" class="fullsize"></button>
+    </form>
+    <p-messages [(value)]="msgs"></p-messages>
+  </div>
 </div>
 
 
