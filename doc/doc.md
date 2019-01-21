@@ -23,6 +23,7 @@ WEA5 Projekt von David Maier
 - [2) Api](#api)
 - [3) Komponenten](#components)
 - [4) Services](#services)
+- [5) Seiten](#seiten)
 
 ## 1) Setup
 
