@@ -97,4 +97,22 @@ selectedAggregation: String = this.aggregations[0].value;
     });
   }
 
+  aggregationToString(agg: string) {
+    switch(agg){
+      case("hour"): {
+        return "diese Stunde";
+      }
+      case("day"): {
+        return "heute";
+      }
+      case("week"): {
+        return "diese Woche";
+      }
+      case("month"): {
+        return "diesen Monat";
+      }
+    }
+
+  }
+
 }

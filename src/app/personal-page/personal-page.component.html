@@ -4,11 +4,11 @@
         <button icon="pi pi-plus" label="Neue Karte hinzufügen" pButton type="button" class="ui-button-success right" (click)="openCard()"></button>
       </div>
   <div class="p-grid">
-      <div *ngFor="let preference of preferences" class="p-col-12 p-md-6 p-lg-3">
+      <div *ngFor="let preference of preferences" class="p-col-12 p-md-6 p-lg-4">
             <p-panel>
                     <p-header>
                         <div class="ui-helper-clearfix">
-                            <h3 class="float-left">{{preference.station.Name}}</h3>
+                            <h3 class="float-left">{{preference.station.Name}} {{aggregationToString(preference.aggregation)}}</h3>
                             <button icon="pi pi-times" pButton type="button" class="ui-button-danger float-right" (click)="deleteCard(preference)"></button>
                         </div>
                     </p-header>
