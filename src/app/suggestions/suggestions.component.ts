@@ -11,21 +11,39 @@ export class SuggestionsComponent implements OnInit {
   @Input() location: Location;
 
   locations: Location[];
-  stations: Station[] = []
+  stations: Station[] = [];
+
+  suggestions: any[] = [];
 
   constructor(private stationClient : StationClient, private locationClient : LocationClient) { }
 
   ngOnInit() {
-    // this.sameDistrict();
+     this.sameDistrict();
   }
 
   sameDistrict() {
     this.locationClient.getByDistrict(this.location.districtName).subscribe(val => {
-      this.locations = val;
-      this.locations.forEach(value => {
-        this.stationClient.getByLocation(value.postCode).subscribe(station => {
-            this.stations.concat(station);
-        })
+      val.forEach( loc => {
+        this.stationClient.getByLocation(loc.postCode).subscribe( sta => {
+          if(sta.length > 0){
+            this.suggestions.push(loc);
+          }
+        });
+      })
+    });
+    if(this.suggestions.length == 0){
+      this.sameProvince();
+    }
+  }
+
+  sameProvince() {
+    this.locationClient.getByProvince(this.location.provinceName).subscribe(val => {
+      val.forEach( loc => {
+        this.stationClient.getByLocation(loc.postCode).subscribe( sta => {
+          if(sta.length > 0){
+            this.suggestions.push(loc);
+          }
+        });
       })
     });
   }

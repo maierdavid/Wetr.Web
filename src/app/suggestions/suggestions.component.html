@@ -2,10 +2,8 @@
   Leider wurden für {{location.communityName}} keine Wetterstationen gefunden.
 </p>
 
-<!-- <ul *ngFor="let station of stations">
-  <li>{{station.name}}</li>
-</ul>
+<h3>Andere Wetterstationen in ihrer Nähe:</h3>
 
-<ul *ngFor="let location of locations">
-  <li>{{location.communityName}}</li>
-</ul> -->
+<ul *ngFor="let location of suggestions">
+  <li><a routerLink="/location/{{location.postCode}}">{{location.communityName}}</a></li>
+</ul> 
