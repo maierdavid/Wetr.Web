@@ -24,7 +24,7 @@ export class MyStationsComponent implements OnInit {
   ngOnInit() {
     this.user = this.authenticationService.getLoggedIn();
     this.stationClient.getByCreator(this.user.username).subscribe(val => { this.stations = val});
-    this.measurementClient.getALLTypes().subscribe(val => this.measurementTypes = val);
+    this.measurementClient.getALLTypes().subscribe(val => {this.measurementTypes = val; this.selectedMeasurementType = val[0];});
   }
 
   user: User;

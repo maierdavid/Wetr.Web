@@ -44,23 +44,23 @@
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Typ</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Postleitzahl</div>
-          <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" pKeyFilter="int" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Straße</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Breitengrade</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" pKeyFilter="num" class="fullsize"/></div>
       </div>
       <div class="ui-g">
           <div class="ui-g-2">Längengrade</div>
-          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" class="fullsize"/></div>
+          <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" pKeyFilter="num" class="fullsize"/></div>
       </div>
       <div class="ui-g">
         <div class="ui-g-12"><p-messages [(value)]="updateMessages" [enableService]="false"></p-messages></div>
@@ -84,27 +84,27 @@
     <form>
         <div class="ui-g">
             <div class="ui-g-2">Name</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.name" name="name" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Typ</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.type" name="type" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Postleitzahl</div>
-            <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="number" min="1000" max="9999" pInputText [(ngModel)]="selectedStation.location" name="location" pKeyFilter="int" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Straße</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.street" name="street" [pKeyFilter]="blockSpecial" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Breitengrade</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.latitude" name="latitude" pKeyFilter="num" class="fullsize"/></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Längengrade</div>
-            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="text" pInputText [(ngModel)]="selectedStation.longitude" name="longitude" pKeyFilter="num" class="fullsize"/></div>
         </div>
         <div class="ui-g">
           <div class="ui-g-12"><p-messages [(value)]="createMessages" [enableService]="false"></p-messages></div>
@@ -117,17 +117,17 @@
   </p-dialog>
 
 <p-dialog header="Neuen Messwert eintragen" [(visible)]="displayMeasurement" modal="true" width="600" [contentStyle]="{'overflow':'visible'}" (onHide)="cancelMeasurement();">
-    <form>
+    <form #measurementForm="ngForm">
         <div class="ui-g">
             <div class="ui-g-2">Messungstyp</div>
             <div class="ui-g-10"><p-dropdown [options]="measurementTypes" [(ngModel)]="selectedMeasurementType" name="selectedMeasurementType" optionLabel="type" [style]="{'width':'100%'}"></p-dropdown></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Wert</div>
-            <div class="ui-g-10"><input type="number" pInputText pKeyFilter="num" [(ngModel)]="value" name="value" class="fullsize"/></div>
+            <div class="ui-g-10"><input type="number" pInputText pKeyFilter="num" [(ngModel)]="value" name="value" class="fullsize" required/></div>
         </div>
         <div class="ui-g">
-                <div class="ui-g-6"><button pButton type="button" label="Messwert abschicken" class="fullsize" (click)="sendMeasurement();"></button></div>
+                <div class="ui-g-6"><button pButton type="button" label="Messwert abschicken" class="fullsize" (click)="sendMeasurement();" [disabled]="measurementForm.invalid"></button></div>
                 <div class="ui-g-6"><button pButton type="button" label="Abbrechen" class="fullsize ui-button-danger" (click)="cancelMeasurement();"></button></div>
             </div>
     </form>
