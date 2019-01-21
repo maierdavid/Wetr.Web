@@ -21,6 +21,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
 import {ChartModule} from 'primeng/chart';
 import {KeyFilterModule} from 'primeng/keyfilter';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -65,6 +66,7 @@ import { StationReportComponent } from './station-report/station-report.componen
     CalendarModule,
     ChartModule,
     KeyFilterModule,
+    MultiSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -26,7 +26,7 @@
       </div>
         <div class="ui-g">
             <div class="ui-g-2">Messungstyp</div>
-            <div class="ui-g-10"><p-dropdown [options]="measurementTypes" [(ngModel)]="selectedMeasurementType" name="selectedMeasurementType" optionLabel="type" [style]="{'width':'100%'}"></p-dropdown></div>
+            <div class="ui-g-10"><p-multiSelect [options]="measurementTypes" [(ngModel)]="selectedMeasurementTypes" name="selectedMeasurementType" optionLabel="type" [filter]="false" [style]="{'width':'100%'}"></p-multiSelect></div>
         </div>
         <div class="ui-g">
             <div class="ui-g-2">Aggregation</div>

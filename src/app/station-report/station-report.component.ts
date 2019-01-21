@@ -10,7 +10,7 @@ export class StationReportComponent implements OnInit {
 
   @Input() station: Station;
   @Input() aggregation: string;
-  @Input() type: MeasurementType;
+  @Input() type: MeasurementType[];
 
   constructor() { }
 
