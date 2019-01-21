@@ -56,15 +56,10 @@ export class StationComponent implements OnInit {
         this.measurements = res;
         this.setChartData(res);
       });
-
-      console.log(gmt);
     }
   }
 
   setChartData(measurements : Measurement[]){
-    console.log("measurements");
-    console.log(measurements);
-
     switch(this.selectedAggregation){
       case "hour" : {
         this.measurementClient.filterHour(measurements).subscribe(data => {
@@ -95,9 +90,6 @@ export class StationComponent implements OnInit {
   }
 
   fillChartData(data : FilterTupel[]){
-    console.log("data:");
-    console.log(data);
-
     var labels: string[] = [];
     var max: any[] = [];
     var min: any[] = [];
