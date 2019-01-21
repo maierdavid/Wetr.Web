@@ -17,4 +17,8 @@ export class StationReportComponent implements OnInit {
   ngOnInit() {
   }
 
+  removeCard = function() {
+    
+  }
+
 }

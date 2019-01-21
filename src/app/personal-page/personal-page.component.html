@@ -5,7 +5,15 @@
       </div>
   <div class="p-grid">
       <div *ngFor="let preference of preferences" class="p-col-12 p-md-6 p-lg-3">
-          <app-station-report [station]="preference.station.Name"></app-station-report>
+            <p-panel>
+                    <p-header>
+                        <div class="ui-helper-clearfix">
+                            <h3 class="float-left">{{preference.station.Name}}</h3>
+                            <button icon="pi pi-times" pButton type="button" class="ui-button-danger float-right" (click)="deleteCard(preference)"></button>
+                        </div>
+                    </p-header>
+                    <app-station-report [station]="preference.station.Name"></app-station-report>
+                </p-panel> 
       </div>
   </div>
 </div>

@@ -76,6 +76,17 @@ selectedAggregation: String = this.aggregations[0].value;
     this.displayCard = false;
   }
 
+  deleteCard = function (preference: Preference){
+
+    const index = this.preferences.indexOf(preference, 0);
+    if (index > -1) {
+      this.preferences.splice(index, 1);
+    }
+
+    localStorage.setItem(this.userId.toString(), JSON.stringify(this.preferences));
+    this.preferences = JSON.parse(localStorage.getItem(this.userId.toString()));
+  }
+
   search(event) {
     var temp: Station[] = [];
     this.stations.forEach(element => {

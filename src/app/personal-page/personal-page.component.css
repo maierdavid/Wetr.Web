@@ -13,3 +13,16 @@
 .fullsize {
     width: 100%;
 }
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+h3 {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
