@@ -117,8 +117,9 @@ export class MyStationsComponent implements OnInit {
     if(valid){
       this.stationClient.insert(this.selectedStation).subscribe(res =>  {
         this.messageService.add({severity:'success', summary:'Station erfolgreich gespeichert'});
-        this.stations.push(this.selectedStation);
+        
       });
+      this.stations.push(this.selectedStation);
       this.displayCreate = false;
     } else {
       this.updateMessages.push({severity:'error', summary:'Anlegen nicht erfolgreich', detail:'Bitte geben Sie nur erlaubte Werte ein'});
