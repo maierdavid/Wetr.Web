@@ -1,0 +1,1077 @@
+{
+  "x-generator": "NSwag v12.0.9.0 (NJsonSchema v9.13.10.0 (Newtonsoft.Json v11.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "Wetr.WebService API",
+    "version": "1.0.0"
+  },
+  "host": "localhost:60077",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/location": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "Location_GetAll",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/location/code/{code}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "Location_GetByCode",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Location"
+            }
+          }
+        }
+      }
+    },
+    "/api/location/district/{district}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "Location_GetByDistrict",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "district",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/location/province/{province}": {
+      "get": {
+        "tags": [
+          "Location"
+        ],
+        "operationId": "Location_GetByProvince",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "province",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Location"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/measurementtype": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetALLTypes",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MeasurementType"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/measurementtype/{type}": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetForType",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/MeasurementType"
+            }
+          }
+        }
+      }
+    },
+    "/api/measurement/{id}": {
+      "get": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetById",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            }
+          }
+        }
+      }
+    },
+    "/api/measurement/GetByStation": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetByStation",
+        "parameters": [
+          {
+            "name": "gmt",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetMeasurementTupel"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/measurement/GetByStationAndType": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_GetByStationAndTypeInTimeSpan",
+        "parameters": [
+          {
+            "name": "gmt",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GetMeasurementTupel"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/measurement": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_Insert",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_Update",
+        "parameters": [
+          {
+            "name": "m",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_Delete",
+        "parameters": [
+          {
+            "name": "m",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Measurement"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/filter/hour": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_FilterHour",
+        "parameters": [
+          {
+            "name": "measurements",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilterTupel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/filter/day": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_FilterDay",
+        "parameters": [
+          {
+            "name": "measurements",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilterTupel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/filter/week": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_FilterWeek",
+        "parameters": [
+          {
+            "name": "measurements",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilterTupel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/filter/month": {
+      "post": {
+        "tags": [
+          "Measurement"
+        ],
+        "operationId": "Measurement_FilterMonth",
+        "parameters": [
+          {
+            "name": "measurements",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Measurement"
+              }
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/FilterTupel"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/station": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetALL",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Insert",
+        "parameters": [
+          {
+            "name": "station",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Station"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Update",
+        "parameters": [
+          {
+            "name": "station",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Station"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/station/id/{id}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetById",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Station"
+            }
+          }
+        }
+      }
+    },
+    "/api/station/name/{name}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetByName",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Station"
+            }
+          }
+        }
+      }
+    },
+    "/api/station/creator/{name}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetByCreator",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/station/location/{plz}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetByLocation",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "plz",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/station/location/{longitude}/{latitude}/{radius}": {
+      "get": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_GetByPointAndRadius",
+        "parameters": [
+          {
+            "type": "number",
+            "name": "longitude",
+            "in": "path",
+            "required": true,
+            "format": "decimal",
+            "x-nullable": false
+          },
+          {
+            "type": "number",
+            "name": "latitude",
+            "in": "path",
+            "required": true,
+            "format": "decimal",
+            "x-nullable": false
+          },
+          {
+            "type": "number",
+            "name": "radius",
+            "in": "path",
+            "required": true,
+            "format": "decimal",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Station"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/station/{name}": {
+      "delete": {
+        "tags": [
+          "Station"
+        ],
+        "operationId": "Station_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/login/{name}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetLogin",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/register/{name}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetRegister",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetAllUser",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{name}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_GetUserByName",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user/update": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_UpdateUser",
+        "parameters": [
+          {
+            "name": "u",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user/updatepassword/{name}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "operationId": "User_UpdateUserPassword",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "x-nullable": false
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "PostCode"
+      ],
+      "properties": {
+        "PostCode": {
+          "type": "integer"
+        },
+        "CommunityName": {
+          "type": "string"
+        },
+        "DistrictName": {
+          "type": "string"
+        },
+        "ProvinceName": {
+          "type": "string"
+        }
+      }
+    },
+    "MeasurementType": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Type": {
+          "type": "string"
+        },
+        "Unit": {
+          "type": "string"
+        }
+      }
+    },
+    "Measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "Station",
+        "TimeStamp",
+        "Value"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer"
+        },
+        "Station": {
+          "type": "integer"
+        },
+        "TimeStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Value": {
+          "type": "number",
+          "format": "double"
+        },
+        "Type": {
+          "type": "string"
+        }
+      }
+    },
+    "GetMeasurementTupel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "StartDate",
+        "EndDate"
+      ],
+      "properties": {
+        "Stations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Station"
+          }
+        },
+        "MeasurementType": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MeasurementType"
+          }
+        },
+        "StartDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Station": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "Location",
+        "Longitude",
+        "Latitude",
+        "Creator"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "integer"
+        },
+        "Street": {
+          "type": "string"
+        },
+        "Longitude": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "Latitude": {
+          "type": "number",
+          "format": "decimal"
+        },
+        "Creator": {
+          "type": "integer"
+        }
+      }
+    },
+    "FilterTupel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Max",
+        "Min",
+        "Avg",
+        "Sum"
+      ],
+      "properties": {
+        "Type": {
+          "type": "string"
+        },
+        "Max": {
+          "type": "number",
+          "format": "double"
+        },
+        "Min": {
+          "type": "number",
+          "format": "double"
+        },
+        "Avg": {
+          "type": "number",
+          "format": "double"
+        },
+        "Sum": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer"
+        },
+        "Username": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
