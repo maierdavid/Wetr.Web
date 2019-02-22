@@ -4,6 +4,7 @@ import { Station, MeasurementType, MeasurementClient, Measurement, GetMeasuremen
 interface typeValue {
   type: string;
   value: Number;
+  unit: string;
 }
 
 @Component({
@@ -31,36 +32,43 @@ export class StationReportComponent implements OnInit {
     //unfortunately, this has to be mocked because the calls to the api yield no results
 
     var generatedValue: Number;
+    var typeLabel: string;
     switch(type.Type){
       case("Air_Pressure"): {
         generatedValue = this.getRandomArbitrary(650, 1020);
+        typeLabel = "Luftdruck";
         break;
       }
       case("Air_Temperature"): {
         generatedValue = this.getRandomArbitrary(-20, 35);
+        typeLabel = "Temperatur";
         break;
       }
       case("Humidity"): {
         generatedValue = this.getRandomArbitrary(0, 100);
+        typeLabel = "Luftfeuchtigkeit";
         break;
       }
       case("Percipitation"): {
         generatedValue = this.getRandomArbitrary(0, 35);
+        typeLabel = "Niederschlagsmenge";
         break;
       }
       case("Wind_Direction"): {
         generatedValue = this.getRandomArbitrary(9000, 10000);
+        typeLabel = "Windrichtung";
         break;
       }
       case("Wind_Speed"): {
         generatedValue = this.getRandomArbitrary(0, 100);
+        typeLabel = "Windgeschwindigkeit";
         break;
       }
       default: {
         generatedValue = 0;
       }
     }
-    this.displayData.push({type: type.Type, value: generatedValue});
+    this.displayData.push({type: typeLabel, value: generatedValue, unit: type.Unit});
   }
 
   getRandomArbitrary(min, max) {

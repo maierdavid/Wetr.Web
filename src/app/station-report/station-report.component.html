@@ -1,3 +1,11 @@
-<div *ngFor="let instance of displayData">
-  {{instance.type}}: {{instance.value}}
-</div>
+<table>
+  <tr *ngFor="let instance of displayData">
+      <td class="type">
+          {{instance.type}}:
+      </td>
+      <td>
+          {{instance.value.toFixed(2)}}{{instance.unit}}
+      </td>
+  </tr>
+</table>
+<!-- {{instance.type}}: {{instance.value.toFixed(2)}}{{instance.unit}} -->
